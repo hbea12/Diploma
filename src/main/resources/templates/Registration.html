@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"></head>
+
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+    <div class="container">
+        <!--<div th:if="${success} == true" class="alert alert-success">
+            <strong>Sikeres regisztréció!</strong>
+        </div>-->
+        <div th:if="${orvosIdFoglalt} == true" class="alert alert-warning">
+            <strong>Figyelem!</strong> A megadott tajszám már foglalt
+        </div>
+        <form th:action="@{/regisztracio}" method="post" th:object="${user}">
+            <label for="name">Név:</label>
+            <div class="form-group">
+                <input type="text" id="name"
+                       required="required" th:field="*{orvos.orvosNev}" autofocus="autofocus">
+            </div>
+
+            <label for="zipAndCity">Irányítószám és város:</label>
+            <div class="form-group">
+                <input type="text" id="zipAndCity"
+                       required="required" th:field="*{orvos.zippAndCity}" autofocus="autofocus">
+            </div>
+
+            <label for="street">Út és házszám:</label>
+            <div class="form-group">
+                <input type="text" id="street"
+                       required="required" th:field="*{orvos.street}" autofocus="autofocus">
+            </div>
+
+            <label for="phoneNumber">Elérhetőség:</label>
+            <div class="form-group">
+                <input type="text" id="phoneNumber"
+                       required="required" th:field="*{orvos.phoneNumber}" autofocus="autofocus">
+            </div>
+
+            <label for="username">Orvos azonosító:</label>
+            <div class="form-group">
+                    <input type="text" id="username"
+                           required="required" th:field="*{userName}">
+            </div>
+            <!--<label for="password">Jelszó:</label>-->
+            <!--<div class="form-group">-->
+                <!--<input type="password" id="password"-->
+                       <!--required="required" th:field="*{password}">-->
+            <!--</div>-->
+
+                <div class="form-group">
+                    <button id="submitButton" type="submit"
+                            class="btn mb20 mb20 pull-left btn-large btn-primary">Regisztráció</button>
+                </div>
+            </form>
+    </div>
+
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      lang="en"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"></head>
+
+
+
+<body>
+
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+<div class="container">
+
+    <div th:if="${DefaultPasswordChanged} == false">
+        <div th:if="${notSamePassword} == true" class="alert alert-warning">
+            <strong>Figyelem!</strong> A megadott jelszavak nem egyeznek!
+        </div>
+        <div th:if="${samePassword} == true" class="alert alert-warning">
+            <strong>Figyelem!</strong> A régi és az új jelszó ugyanaz!
+        </div>
+        <form method="post" id="mainForm" th:action="@{/}" th:object="${user}">
+            <div class="container">
+
+                <input hidden type="text" id="username"
+                       th:field="*{userName} ">
+                <label for="password">Kezdeti jelszó módosítása:</label>
+                <div class="form-group">
+                    <input type="password" id="password" placeholder="Jelszó"
+                           th:field="*{password}">
+                </div>
+
+                <div class="form-group">
+                    <input type="password" id="password2" placeholder="Jelszó mégegyszer"
+                           th:field="*{password2}">
+                </div>
+                <button type="submit" class="btn btn-default">jelszó módosítása</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+    <div sec:authorize="!hasAuthority('ROLE_ADMIN')" id="orvos" class="row list-group">
+
+        <div class="item col-xs-4 col-lg-4" th:each="orvos : ${orvosList}">
+
+            <div th:if="${orvos.status} == true" class="thumbnail">
+
+                <img class="group list-group-image" src="assets/images/orvos.jpg" alt="" />
+                <div class="caption">
+                    <h4 class="group inner list-group-item-heading" th:text="${orvos.getOrvosNev()}">Név</h4>
+                    <p class="group inner list-group-item-text" th:text="${orvos.getZippAndCity()}">Város</p>
+                    <p class="group inner list-group-item-text" th:text="${orvos.getStreet()}">Utca</p>
+                    <p class="group inner list-group-item-text" th:text="${'Tel.: '+ orvos.getPhoneNumber()}">Telefon</p>
+
+                </div>
+
+
+                <table th:if="${orvos.appointmentVisible} == true" class="table table-striped" style="width:100%">
+                    <caption>Rendelési idő</caption>
+                    <tr>
+                        <td>Hétfő</td>
+                        <td>Kedd</td>
+                        <td>Szerda</td>
+                        <td>Csütörtök</td>
+                        <td>Péntek</td>
+
+                    </tr>
+                    <tr>
+                        <td th:text="${orvos.appointment.getMondayMorning()}"></td>
+                        <td th:text="${orvos.appointment.getTuesdayMorning()}"></td>
+                        <td th:text="${orvos.appointment.getWednesdayMorning()}"></td>
+                        <td th:text="${orvos.appointment.getThursdayMorning()}"></td>
+                        <td th:text="${orvos.appointment.getFridayMorning()}"></td>
+
+                    </tr>
+                    <tr>
+                        <td th:text="${orvos.appointment.getMondayAfternoon()}"></td>
+                        <td th:text="${orvos.appointment.getTuesdayAfternoon()}"></td>
+                        <td th:text="${orvos.appointment.getWednesdayAfternoon()}"></td>
+                        <td th:text="${orvos.appointment.getThursdayAfternoon()}"></td>
+                        <td th:text="${orvos.appointment.getFridayAfternoon()}"></td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

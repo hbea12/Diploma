@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+<form method="post" id="mainForm" th:action="@{/ujnaplo}" th:object="${naplo}">
+    <div class="container">
+        <label for="taj">Tajszám:</label>
+        <div class="form-group">
+            <input type="text"  id="taj" placeholder="Tajszám (9 hosszú)"
+                   pattern="^[0-9]{9}" title="A tajszám 9 hosszúságú"
+            required="required" th:field="*{taj}">
+        </div>
+
+        <label for="betegsegAzonosito">Betegség azonositó:</label>
+        <div class="form-group">
+            <select th:field="*{betegsegAzonosito}"  id="betegsegAzonosito">
+                <option th:each="betegseg : ${betegsegList}" th:value="${betegseg.id}" th:text="${betegseg.betegsegNev}"></option>
+            </select>
+        </div>
+
+
+
+        <label for="gyogzszerAzonosito">Gyógyszer azonositó:</label>
+        <div class="form-group">
+            <select th:field="*{gyogzszerAzonosito}"  id="gyogzszerAzonosito">
+                <option th:each="gyogzszer : ${gyogzszerList}" th:value="${gyogzszer.id}"
+                        th:text="${gyogzszer.gyogyszerNev}" th:selected="0"></option>
+            </select>
+        </div>
+
+        <label for="gyogyszerFelirtAdag">Gyógyszer Felírt adag:</label>
+        <div class="form-group">
+            <input type="text"  id="gyogyszerFelirtAdag"
+                   th:field="*{gyogyszerFelirtAdag}">
+        </div>
+
+        <label for="betegPanasz">Beteg panasz:</label>
+        <div class="form-group">
+            <input type="text"  id="betegPanasz"
+                   required="required" th:field="*{betegPanasz}">
+        </div>
+
+        <button type="submit" class="btn btn-default">Mentés</button>
+    </div>
+</form>
+
+
+</body>
+</html>

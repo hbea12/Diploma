@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+    <div class="container">
+
+        <form method="post" id="mainForm" th:action="@{/beteggyakorisag}" th:object="${idoszak}">
+            <h4>Adott időszakban betegek előfordulása</h4>
+
+            <label for="fromDate">Kezdet</label>
+            <div class="form-group">
+                <input type="date" id="fromDate" pattern="\d{4}-\d{1,2}-\d{1,2}"
+                       required="required" th:field="*{fromDate}">
+            </div>
+
+            <label for="toDate">Vége</label>
+            <div class="form-group">
+                <input type="date" id="toDate" pattern="\d{4}-\d{1,2}-\d{1,2}"
+                       required="required" th:field="*{toDate}">
+            </div>
+            <div>
+                <button type="submit" class="btn btn-default">Lekérdez</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

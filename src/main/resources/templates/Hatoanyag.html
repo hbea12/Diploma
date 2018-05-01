@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+<form method="post" id="mainForm" th:action="@{/hatoanyag}" th:object="${gyogyszer}">
+    <div class="container">
+
+
+        <label for="gyogyszerHatoanyag">Gyógzszer hatóanyag:</label>
+        <div class="form-group">
+            <select th:field="*{gyogyszerHatoanyag}"  id="gyogyszerHatoanyag" placeholder="Select your country">
+                <option th:each="string : ${hatoanyagList}" th:value="${string}" th:text="${string}"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-default">Lekérdez</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(felirtGyogyszerMap)}">
+        <table class="table table-striped">
+            <tr>
+                <th>Név</th>
+                <th>Előfordulás</th>
+
+            </tr>
+            <tr th:each="instance : ${felirtGyogyszerMap}">
+                <td th:text="${instance.key}">keyvalue</td>
+                <td th:text="${instance.value}">num</td>
+            </tr>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

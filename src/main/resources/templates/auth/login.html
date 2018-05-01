@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:replace="fragments/navbar :: navbar"></div>
+
+<div class="container">
+    <div th:if="${param.error}">
+        <label style="color:red">Érvénytelen felhasználóné és jelszó</label>
+    </div>
+    <div th:if="${param.logout}">
+        <label>
+            Kijelentkeztél
+        </label>
+    </div>
+
+
+    <!-- Login Section -->
+    <div id="login" class="padding ptb-xs-60 page-signin">
+        <div class="container">
+            <div class="row">
+                <section class="logo text-center">
+                    <h2>Bejelentkezés</h2>
+                </section>
+                <form th:action="@{/login}" method="post">
+                    <form th:action="@{/login}" method="post">
+                        <div class="form-group">
+                            <input name="username" type="text" placeholder="Azonosító" minlength="1" required="required" autofocus="autofocus"/>
+                        </div>
+                        <div class="form-group">
+                            <input name="password" type="password" placeholder="Jelszó" minlength="1" required="required"/>
+                        </div>
+
+                        <div class="form-group">
+                            <button id="submitButton" type="submit"
+                                class="btn mb20 mb20 pull-left btn-large btn-primary">Bejelentkezés</button>
+                        </div>
+                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+
+

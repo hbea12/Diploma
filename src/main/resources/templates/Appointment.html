@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"></head>
+
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+<div class="container">
+
+    <form method="post" id="mainForm" th:action="@{/idopontkezeles}" th:object="${orvos}">
+        <div class="container">
+            <input hidden type="text" id="appointment"
+                   th:field="*{appointment.id} ">
+
+            <input hidden type="text" id="orvosid"
+                   th:field="*{id} ">
+
+            <label for="getMondayMorning">Hétfő reggel</label>
+            <div class="form-group">
+                <input type="text"  id="getMondayMorning"
+                       th:field="*{appointment.mondayMorning}">
+            </div>
+
+            <label for="getMondayAfternoon">Hétfő délután</label>
+            <div class="form-group">
+                <input type="text"  id="getMondayAfternoon"
+                       th:field="*{appointment.mondayAfternoon}">
+            </div>
+
+            <label for="getTuesdayMorning">Kedd reggel</label>
+            <div class="form-group">
+                <input type="text"  id="getTuesdayMorning"
+                       th:field="*{appointment.tuesdayMorning}">
+            </div>
+
+            <label for="getTuesdayAfternoon">Kedd délután</label>
+            <div class="form-group">
+                <input type="text"  id="getTuesdayAfternoon"
+                       th:field="*{appointment.tuesdayAfternoon}">
+            </div>
+
+            <label for="getWednesdayMorning">Szerda reggel</label>
+            <div class="form-group">
+                <input type="text"  id="getWednesdayMorning"
+                       th:field="*{appointment.wednesdayMorning}">
+            </div>
+
+            <label for="getWednesdayAfternoon">Szerda délután</label>
+            <div class="form-group">
+                <input type="text"  id="getWednesdayAfternoon"
+                       th:field="*{appointment.wednesdayAfternoon}">
+            </div>
+
+            <label for="getThursdayMorning">Csütörtök reggel</label>
+            <div class="form-group">
+                <input type="text"  id="getThursdayMorning"
+                       th:field="*{appointment.thursdayMorning}">
+            </div>
+
+            <label for="getThursdayAfternoon">Caütörtök délután</label>
+            <div class="form-group">
+                <input type="text"  id="getThursdayAfternoon"
+                       th:field="*{appointment.thursdayAfternoon}">
+            </div>
+
+            <label for="getFridayMorning">Péntek reggel</label>
+            <div class="form-group">
+                <input type="text"  id="getFridayMorning"
+                       th:field="*{appointment.fridayMorning}">
+            </div>
+
+            <label for="getFridayAfternoon">Péntek délután</label>
+            <div class="form-group">
+                <input type="text"  id="getFridayAfternoon"
+                       th:field="*{appointment.fridayAfternoon}">
+            </div>
+
+            <button type="submit" class="btn btn-default">Véglegesít</button>
+        </div>
+    </form>
+</div>
+
+
+</body>
+</html>

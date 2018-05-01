@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+<form method="post" id="mainForm" th:action="@{/ujbetegseg}" th:object="${disease}">
+    <div class="container">
+        <div th:if="${betegsegIdFoglalt} == true" class="alert alert-warning">
+            <strong>Figyelem!</strong> A megadott betegség azonosító már foglalt
+        </div>
+        <label for="taj">Betegség azonosító:</label>
+        <div class="form-group">
+            <input type="text"  id="taj"
+            required="required" th:field="*{betegsegId}">
+        </div>
+        <label for="nev">Betegség név:</label>
+        <div class="form-group">
+            <input type="text" id="nev"
+                   required="required" th:field="*{betegsegNev}">
+        </div>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+</form>
+
+
+</body>
+</html>

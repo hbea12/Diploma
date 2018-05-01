@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+
+<form method="post" id="mainForm" th:action="@{/gyogyszerdata}" th:object="${gyogyszer}">
+    <div class="container">
+        <div th:if="${invalidGyogyszerAzonosito} == true" class="alert alert-warning">
+            <strong>Figyelem!</strong> A gyógyszer azonosító már foglalt
+        </div>
+
+        <input type="text"  id="gyogyszerId"
+               hidden th:field="*{id}">
+
+        <label for="gyogyszerAzonosito">Gyógyszer azonosító:</label>
+        <div class="form-group">
+            <input type="text"  id="gyogyszerAzonosito"
+            required="required" th:field="*{gyogyszerAzonosito}">
+        </div>
+        <label for="gyogyszerNev">Gyógyszer név:</label>
+        <div class="form-group">
+            <input type="text" id="gyogyszerNev"
+                   required="required" th:field="*{gyogyszerNev}">
+        </div>
+        <label for="gyogyszerHatoanyag">Gyógyszer hatóanyag:</label>
+        <div class="form-group">
+            <input type="text" id="gyogyszerHatoanyag"
+                   required="required" th:field="*{gyogyszerHatoanyag}">
+        </div>
+        <label for="gyogyszerAr">Gyógyszer ár:</label>
+        <div class="form-group">
+            <input type="number" id="gyogyszerAr"
+                   required="required" th:field="*{gyogyszerAr}">
+        </div>
+
+        <label for="gyogyszerMennyiseg">Gyógyszer mennyiség:</label>
+        <div class="form-group">
+            <input type="number" id="gyogyszerMennyiseg"
+                   required="required" th:field="*{gyogyszerMennyiseg}">
+        </div>
+
+        <label for="gyogyszerMertekegyseg">Gyógyszer mértékegység:</label>
+        <div class="form-group">
+            <input type="text" id="gyogyszerMertekegyseg"
+                   required="required" th:field="*{gyogyszerMertekegyseg}">
+        </div>
+
+
+        <div>
+            <label>Gyógyszer vényköteles:</label>
+
+            <div class="checkbox">
+                <input type="radio" th:field="*{venykoteles}"
+                       name="advertisementRadio" value="true" required/>
+                <label class="">Igen</label>
+            </div>
+
+            <div class="checkbox">
+                <input type="radio" th:field="*{venykoteles}" name="advertisementRadio"  value="false"/>
+                <label class="">Nem</label>
+            </div>
+        </div>
+
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+</form>
+
+
+
+
+
+</body>
+</html>

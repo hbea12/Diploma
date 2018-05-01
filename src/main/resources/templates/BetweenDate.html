@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head"></head>
+
+<body>
+<div th:if="${DefaultPasswordChanged} != false">
+    <div th:replace="fragments/navbar :: navbar"></div>
+</div>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(betegek)}">
+        <table class="table table-striped">
+            <tr>
+                <th>Taj</th>
+                <th>Panasz</th>
+                <th>Felírt gyógzszer</th>
+                <th>Fogyasztási adag</th>
+                <th>Orvos</th>
+                <th>Dátum</th>
+
+            </tr>
+            <tr th:each="naplo : ${betegek}">
+                <td th:text="${naplo.taj}"></td>
+                <td th:text="${naplo.betegPanasz}"></td>
+                <td th:text="${naplo.gyogzszerNev}"></td>
+                <td th:text="${naplo.gyogyszerFelirtAdag}"></td>
+                <td th:text="${naplo.orvosNev}"></td>
+                <td th:text="${naplo.latogatasDatum}"></td>
+            </tr>
+            </tr>
+        </table>
+    </div>
+
+    <div class="form-group">
+        <a th:href="@{/beteggyakorisag}" class="btn mb20 mb20 pull-left btn-large btn-primary">Vissza</a>
+    </div>
+</div>
+</body>
+</html>
+
