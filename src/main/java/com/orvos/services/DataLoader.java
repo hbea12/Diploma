@@ -51,11 +51,11 @@ public class DataLoader {
 
     @PostConstruct
     public void loadData(){
-        loadOrvos();
-        loadBeteg();
-        loadBetegseg();
-        loadGyogyszer();
-        loadNaplo();
+        //loadOrvos();
+        //loadBeteg();
+        //loadBetegseg();
+        //loadGyogyszer();
+        //loadNaplo();
     }
 
     private void loadOrvos(){
